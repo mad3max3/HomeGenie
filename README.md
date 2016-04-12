@@ -1,5 +1,8 @@
 [![Join the chat at https://gitter.im/genielabs/HomeGenie](https://badges.gitter.im/genielabs/HomeGenie.svg)](https://gitter.im/genielabs/HomeGenie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## HomeGenie Fork replacing nmqtt with M2Mqtt
+With nmqtt not working very well on Raspberry pi this fork uses M2Mqtt that works much better.
+
 ## Presentation Site and User's Guide
 
 http://www.homegenie.it

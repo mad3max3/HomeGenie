@@ -194,6 +194,9 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\Externals\SharpZipLib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="M2Mqtt.Net">
+      <HintPath>..\Externals\M2Mqtt\M2Mqtt.Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\MacroRecorder.cs" />
