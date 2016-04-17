@@ -116,7 +116,7 @@ namespace HomeGenie.Data
         /// <value>The update time.</value>
         public DateTime UpdateTime { get; set; }
 
-        [XmlIgnore,JsonIgnore]
+        [XmlIgnore]
         public bool NeedsUpdate { get; set; }
 
         /// <summary>
