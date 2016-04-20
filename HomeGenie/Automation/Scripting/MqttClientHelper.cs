@@ -107,7 +107,7 @@ namespace HomeGenie.Automation.Scripting
                 callback(e.Topic, msg);
             };
 
-            mqttClient.Subscribe(new string[] {topic}, new byte[] { uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            mqttClient.Subscribe(new string[] { topic }, new byte[] { uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
             return this;
         }

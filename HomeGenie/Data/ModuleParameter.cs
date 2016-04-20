@@ -107,7 +107,6 @@ namespace HomeGenie.Data
         /// Gets or sets the type of the field.
         /// </summary>
         /// <value>The type of the field.</value>
-        [JsonIgnore]
         public string FieldType { get; set; }
 
         /// <summary>
