@@ -24,6 +24,7 @@ using System;
 using System.Net;
 using System.Text;
 using uPLibrary.Networking.M2Mqtt;
+using HomeGenie.Service;
 
 namespace HomeGenie.Automation.Scripting
 {
@@ -45,7 +46,6 @@ namespace HomeGenie.Automation.Scripting
         private MqttEndPoint endPoint = new MqttEndPoint();
 
         private MqttClient mqttClient = null;
-        //private object mqttSyncLock = new object();
 
         /// <summary>
         /// Sets the MQTT server to use.
@@ -86,11 +86,11 @@ namespace HomeGenie.Automation.Scripting
         /// </summary>
         public MqttClientHelper Disconnect()
         {
-            if (this.mqttClient != null)
+            if (this.mqttClient != null && this.mqttClient.IsConnected)
             {
                 this.mqttClient.Disconnect();
-                this.mqttClient = null;
             }
+        
             return this;
         }
 
@@ -120,11 +120,13 @@ namespace HomeGenie.Automation.Scripting
         public MqttClientHelper Publish(string topic, string message)
         {
             var body = Encoding.UTF8.GetBytes(message);
-            mqttClient.Publish(topic, body, 1, true);
-            //            lock (mqttSyncLock)
-            //            {
-            //                mqttClient.PublishMessage<string, AsciiPayloadConverter>(topic, (MqttQos)1, message);
-            //            }
+            mqttClient.Publish(topic, body, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
+
+            if (!mqttClient.IsConnected)
+            {
+                throw new Exception("Mqtt not connected when publishing");
+            }
+
             return this;
         }
 
@@ -136,6 +138,12 @@ namespace HomeGenie.Automation.Scripting
         public MqttClientHelper Publish(string topic, byte[] message)
         {
             mqttClient.Publish(topic, message);
+
+            if (!mqttClient.IsConnected)
+            {
+                throw new Exception("Mqtt not connected when publishing");
+            }
+
             return this;
         }
 
